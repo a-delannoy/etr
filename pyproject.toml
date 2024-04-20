@@ -6,10 +6,80 @@ authors = ["Antoine Delannoy <antoine.j.m.delannoy@gmail.com>"]
 readme = "README.md"
 packages = [{include = "etr", from = "src"}]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "^8.1.7"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.2"
+pytest-cov = "^4.1.0"
+pytest-mock = "^3.11.1"
+mypy = "^1.5.1"
+pre-commit = "^3.4.0"
+
+[tool.poetry.scripts]
+etr-cli = "etr.cli:generate"
+
+[tool.mypy]
+files = "src"
+mypy_path = "src"
+namespace_packages = true
+explicit_package_bases = true
+show_error_codes = true
+strict = true
+
+[tool.black]
+line_length = 88
+
+[tool.ruff]
+fix = true
+line-length = 88
+indent-width = 4
+target-version = "py38"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.ruff.lint]
+select = [
+    "F",   # pyflakes
+    "I",   # isort
+    "N",   # pep8-naming
+    "RUF", # ruff checks
+    "TID", # flake8-tidy-imports
+]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.isort]
+force-single-line = true
+lines-between-types = 1
+lines-after-imports = 2
+required-imports = [
+    "from __future__ import annotations",
+]
+
+
+[tool.coverage.report]
+exclude_lines = [
+    "if TYPE_CHECKING:",
+    "pass",
+    "raise NotImplementedError",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "src/"
+testpaths = ["tests"]
+addopts = [
+    "--cov=src",
+    "--import-mode=importlib",
+]
