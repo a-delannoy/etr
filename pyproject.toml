@@ -15,6 +15,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry.dependencies]
 python = "^3.10"
 click = "^8.1.7"
+pydantic = "^2.7.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.2"
