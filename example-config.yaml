@@ -1,0 +1,13 @@
+data:
+  - name: "test-source"
+    type: "file"
+    args:
+      path: "test-path"
+      format: yaml
+  - name: "test-source-2"
+    type: "api"
+    args:
+      url: https://localhost:8080
+      method: get
+      headers: {}
+      body: {}
