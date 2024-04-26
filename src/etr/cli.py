@@ -4,8 +4,9 @@ import os
 
 import click
 
-from etr.settings import CONFIG_PATH_VAR
-from etr.settings import DEFAULT_CONFIG_PATH
+from etr.config import parse_configuration_file
+from etr.config.settings import CONFIG_PATH_VAR
+from etr.config.settings import DEFAULT_CONFIG_PATH
 
 
 @click.command()
@@ -16,4 +17,6 @@ from etr.settings import DEFAULT_CONFIG_PATH
 )
 def generate(config):
     """Generate an inventory using the given configuration file."""
-    raise NotImplementedError("This feature is not yet implemented.")
+    # logger.info(f"Generating inventory using configuration file: {config}")
+    configuration = parse_configuration_file(config)
+    print(configuration)
